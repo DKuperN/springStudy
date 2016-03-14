@@ -1,0 +1,37 @@
+package den;
+
+import den.logger.Event;
+import den.logger.EventLogger;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+/**
+ * Created by Dzianis_Kupryianchyk on 14-Mar-16.
+ */
+public class StartApp {
+    private EventLogger eventLogger;
+    private Event event;
+    private Client client;
+
+    public StartApp(EventLogger eventLogger, Client client) {
+        this.eventLogger = eventLogger;
+        this.client = client;
+    }
+
+    public static void main(String[] args) {
+        ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+        StartApp app = (StartApp) context.getBean("mainApplication");
+        app.event = (Event) context.getBean("event");
+
+        app.logEvent("Some event for user 1");
+
+        context.close();
+    }
+
+    private void logEvent(String msg) {
+        String str = msg.replaceAll(String.valueOf(client.getId()), client.getFullName());
+        event.setMsg(str);
+        eventLogger.logEvent(event);
+    }
+
+}
