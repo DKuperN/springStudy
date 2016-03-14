@@ -32,6 +32,7 @@
     <bean id="mainApplication" class="den.StartApp">
         <constructor-arg ref="cacheFileEventLogger"/>
         <constructor-arg ref="client"/>
+        <constructor-arg value="Some event for user 1"/>
     </bean>
 
 </beans>

@@ -12,10 +12,12 @@ public class StartApp {
     private EventLogger eventLogger;
     private Event event;
     private Client client;
+    private String logMessage;
 
-    public StartApp(EventLogger eventLogger, Client client) {
+    public StartApp(EventLogger eventLogger, Client client, String msg) {
         this.eventLogger = eventLogger;
         this.client = client;
+        this.logMessage = msg;
     }
 
     public static void main(String[] args) {
@@ -23,7 +25,7 @@ public class StartApp {
         StartApp app = (StartApp) context.getBean("mainApplication");
         app.event = (Event) context.getBean("event");
 
-        app.logEvent("Some event for user 1");
+        app.logEvent(app.logMessage);
 
         context.close();
     }
