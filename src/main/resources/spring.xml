@@ -5,29 +5,12 @@
  		http://www.springframework.org/schema/beans
  		http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
 
+    <import resource="logger-beans.xml"/>
+
     <bean id="client" class="den.Client">
         <constructor-arg value="1"/>
         <constructor-arg value="Barac Obama"/>
     </bean>
-
-    <bean id="eventLogger" class="den.logger.impl.ConsoleEventLogger"/>
-
-    <bean id="fileEventLogger" class="den.logger.impl.FileEventLogger" init-method="init">
-        <constructor-arg value="log.txt"/>
-    </bean>
-    <bean id="cacheFileEventLogger" class="den.logger.impl.CacheFileEventLogger" destroy-method="destroy">
-        <constructor-arg value="log.txt"/>
-        <constructor-arg value="2"/>
-    </bean>
-
-    <bean id="event" class="den.logger.Event" scope="prototype">
-        <constructor-arg>
-            <bean class="java.util.Date"/>
-        </constructor-arg>
-        <constructor-arg ref="dateFormat"/>
-    </bean>
-
-    <bean id="dateFormat" class="java.text.DateFormat" factory-method="getDateTimeInstance"/>
 
     <bean id="mainApplication" class="den.StartApp">
         <constructor-arg ref="cacheFileEventLogger"/>
