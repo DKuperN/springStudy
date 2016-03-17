@@ -5,6 +5,15 @@
 
     <bean id="eventLogger" class="den.logger.impl.ConsoleEventLogger"/>
 
+    <bean id="combineEventLogger" class="den.logger.impl.CombinedEventLogger">
+        <constructor-arg>
+            <list>
+                <ref bean="eventLogger"/>
+                <ref bean="fileEventLogger"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
     <bean id="fileEventLogger" class="den.logger.impl.FileEventLogger" init-method="init">
         <constructor-arg value="log.txt"/>
     </bean>

@@ -2,22 +2,27 @@ package den;
 
 import den.logger.Event;
 import den.logger.EventLogger;
+import den.logger.EventType;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.Map;
 
 /**
  * Created by Dzianis_Kupryianchyk on 14-Mar-16.
  */
 public class StartApp {
-    private EventLogger eventLogger;
+    private EventLogger defaultLogger;
     private Event event;
+    private EventType et;
     private Client client;
-    private String logMessage;
+    private String[] logMessage = {"ERROR message user 1", "SIMPLE message user 1", "INFO message user 1", "TEST message user 1"};
+    Map<EventType, EventLogger> loggers;
 
-    public StartApp(EventLogger eventLogger, Client client, String msg) {
-        this.eventLogger = eventLogger;
+    public StartApp(EventLogger eventLogger, Client client, Map<EventType, EventLogger> loggers) {
+        this.defaultLogger = eventLogger;
         this.client = client;
-        this.logMessage = msg;
+        this.loggers = loggers;
     }
 
     public static void main(String[] args) {
@@ -25,15 +30,28 @@ public class StartApp {
         StartApp app = (StartApp) context.getBean("mainApplication");
         app.event = (Event) context.getBean("event");
 
-        app.logEvent(app.logMessage);
+        for (String aLogMessage : app.logMessage) {
+            if (aLogMessage.contains("ERROR")) {
+                app.et = EventType.ERROR;
+            } else if (aLogMessage.contains("INFO")) {
+                app.et = EventType.INFO;
+            } else {
+                app.et = null;
+            }
+            app.logEvent(aLogMessage, app.et);
+        }
 
         context.close();
     }
 
-    private void logEvent(String msg) {
+    private void logEvent(String msg, EventType type) {
         String str = msg.replaceAll(String.valueOf(client.getId()), client.getFullName());
         event.setMsg(str);
-        eventLogger.logEvent(event);
+        EventLogger logger = loggers.get(type);
+        if(logger == null){
+            logger = defaultLogger;
+        }
+        logger.logEvent(event);
     }
 
 }

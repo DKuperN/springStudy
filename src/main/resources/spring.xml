@@ -10,12 +10,18 @@
     <bean id="client" class="den.Client">
         <constructor-arg value="1"/>
         <constructor-arg value="Barac Obama"/>
+        <property name="greeting" value="Hello there"/>
     </bean>
 
     <bean id="mainApplication" class="den.StartApp">
-        <constructor-arg ref="cacheFileEventLogger"/>
+        <constructor-arg ref="eventLogger"/>
+        <constructor-arg>
+            <map>
+                <entry key="INFO" value-ref="eventLogger"/>
+                <entry key="ERROR" value-ref="combineEventLogger"/>
+            </map>
+        </constructor-arg>
         <constructor-arg ref="client"/>
-        <constructor-arg value="Some event for user 1"/>
     </bean>
 
 </beans>

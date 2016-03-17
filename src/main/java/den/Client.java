@@ -6,6 +6,7 @@ package den;
 public class Client {
     private int id;
     private String fullName;
+    private String greeting; //for testing of setting field by <property> tag in bean
 
     public Client(int id, String fullName) {
         this.id = id;
@@ -27,5 +28,10 @@ public class Client {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    //for testing of setting field by <property> tag in bean
+    public void setGreeting(String greeting) {
+        this.greeting = greeting;
     }
 }
