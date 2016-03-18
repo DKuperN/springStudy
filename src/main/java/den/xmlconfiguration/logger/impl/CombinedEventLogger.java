@@ -1,7 +1,7 @@
-package den.logger.impl;
+package den.xmlconfiguration.logger.impl;
 
-import den.logger.Event;
-import den.logger.EventLogger;
+import den.xmlconfiguration.logger.Event;
+import den.xmlconfiguration.logger.EventLogger;
 
 import java.util.Collection;
 

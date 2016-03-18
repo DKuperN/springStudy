@@ -1,4 +1,4 @@
-package den.logger;
+package den.xmlconfiguration.logger;
 
 /**
  * Created by Dzianis_Kupryianchyk on 17-Mar-16.
