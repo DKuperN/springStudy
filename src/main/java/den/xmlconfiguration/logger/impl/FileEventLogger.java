@@ -4,6 +4,7 @@ import den.xmlconfiguration.logger.Event;
 import den.xmlconfiguration.logger.EventLogger;
 import org.apache.commons.io.FileUtils;
 
+import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
 
@@ -27,6 +28,7 @@ public class FileEventLogger implements EventLogger {
         }
     }
 
+    @PostConstruct
     public void init() throws IOException {
         file.canWrite();
     }

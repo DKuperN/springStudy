@@ -11,32 +11,12 @@
  		http://www.springframework.org/schema/util/spring-util-4.2.xsd">
 
     <import resource="logger-beans.xml"/>
-
-    <!--add link to property file-->
-    <!--<util:properties id="clientProps" location="classpath:client.properties"/>-->
-
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="locations">
-            <list>
-                <value>classpath:client.properties</value>
-            </list>
-        </property>
-        <!--<property name="locations">
-            <list>
-                <value>classpath:test.properties</value>
-            </list>
-        </property>-->
-        <property name="ignoreResourceNotFound" value="true" />
-        <property name="systemPropertiesMode">
-            <util:constant
-                    static-field="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer.SYSTEM_PROPERTIES_MODE_NEVER" />
-        </property>
-    </bean>
+    <import resource="property-loader.xml"/>
 
     <bean id="client" class="den.xmlconfiguration.Client"
           p:greeting="${greeting}"
           c:id="${id}"
-          c:fullName="${userName}"/>
+          c:fullName="${app.userName}"/>
     <!--
         Possible to use:
         <constructor-arg value="${id}"/>
@@ -47,12 +27,12 @@
     -->
 
     <util:map id="loggerMap">
-        <entry key="INFO" value-ref="eventLogger"/>
+        <entry key="INFO" value-ref="consoleEventLogger"/>
         <entry key="ERROR" value-ref="combineEventLogger"/>
     </util:map>
 
     <bean id="mainApplication" class="den.xmlconfiguration.StartApp">
-        <constructor-arg ref="eventLogger"/>
+        <constructor-arg ref="consoleEventLogger"/>
         <constructor-arg ref="loggerMap"/>
         <constructor-arg ref="client"/>
     </bean>

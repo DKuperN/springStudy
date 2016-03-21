@@ -22,7 +22,6 @@ public class Client {
     }
 
     public int getId() {
-
         return id;
     }
 

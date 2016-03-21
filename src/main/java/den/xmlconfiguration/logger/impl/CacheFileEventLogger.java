@@ -2,6 +2,7 @@ package den.xmlconfiguration.logger.impl;
 
 import den.xmlconfiguration.logger.Event;
 
+import javax.annotation.PreDestroy;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,13 +30,14 @@ public class CacheFileEventLogger extends FileEventLogger {
         }
     }
 
+    @PreDestroy
     public void destroy(){
         if(!cache.isEmpty()){
             writeEventsFromCache();
         }
     }
 
-    public void writeEventsFromCache(){
+    private void writeEventsFromCache(){
         super.logEvent(event);
     }
 }
