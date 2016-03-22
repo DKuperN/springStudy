@@ -18,7 +18,7 @@ public class AnnotationApp {
     private Map<EventType, EventLogger> loggers;
     @Autowired
     private Event event;
-    private EventType et;
+    private EventType eventType;
     @Autowired
     private Client client;
     private String[] logMessage = {"ERROR message user 1", "SIMPLE message user 1", "INFO message user 1", "TEST message user 1"};
@@ -39,13 +39,13 @@ public class AnnotationApp {
         AnnotationApp app = (AnnotationApp) ctx.getBean("annotationApp");
         for (String aLogMessage : app.logMessage) {
             if (aLogMessage.contains(EventType.ERROR.toString())) {
-                app.et = EventType.ERROR;
+                app.eventType = EventType.ERROR;
             } else if (aLogMessage.contains(EventType.INFO.toString())) {
-                app.et = EventType.INFO;
+                app.eventType = EventType.INFO;
             } else {
-                app.et = null;
+                app.eventType = null;
             }
-            app.logEvent(aLogMessage, app.et);
+            app.logEvent(aLogMessage, app.eventType);
         }
 
     }

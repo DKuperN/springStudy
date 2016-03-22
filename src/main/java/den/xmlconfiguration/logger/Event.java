@@ -1,6 +1,7 @@
 package den.xmlconfiguration.logger;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
@@ -41,4 +42,10 @@ public class Event {
                 ", date=" + df.format(date) +
                 '}';
     }
+
+    public boolean isDay(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("hh");
+        return Integer.parseInt(dateFormat.format(dateFormat)) > 11;
+    }
+
 }

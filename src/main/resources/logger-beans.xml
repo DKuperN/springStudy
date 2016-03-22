@@ -15,7 +15,7 @@
     </bean>
 
     <bean id="fileEventLogger" class="den.xmlconfiguration.logger.impl.FileEventLogger" init-method="init">
-        <constructor-arg value="log.txt"/>
+        <constructor-arg value="${logFileName}"/>
     </bean>
 
     <bean id="cacheFileEventLogger" class="den.xmlconfiguration.logger.impl.CacheFileEventLogger"
