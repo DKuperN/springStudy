@@ -13,7 +13,7 @@
     <import resource="logger-beans.xml"/>
     <import resource="property-loader.xml"/>
 
-    <bean id="client" class="den.xmlconfiguration.Client"
+    <bean id="client" class="den.spring.core.xmlconfiguration.Client"
           p:greeting="${greeting}"
           c:id="${id}"
           c:fullName="${app.userName}"/>
@@ -31,7 +31,7 @@
         <entry key="ERROR" value-ref="combineEventLogger"/>
     </util:map>
 
-    <bean id="mainApplication" class="den.xmlconfiguration.StartApp">
+    <bean id="mainApplication" class="den.spring.core.xmlconfiguration.StartXmlConfigApp">
         <constructor-arg ref="consoleEventLogger"/>
         <constructor-arg ref="loggerMap"/>
         <constructor-arg ref="client"/>

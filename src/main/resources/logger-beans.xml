@@ -3,9 +3,9 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="consoleEventLogger" class="den.xmlconfiguration.logger.impl.ConsoleEventLogger"/>
+    <bean id="consoleEventLogger" class="den.spring.core.logger.impl.ConsoleEventLogger"/>
 
-    <bean id="combineEventLogger" class="den.xmlconfiguration.logger.impl.CombinedEventLogger">
+    <bean id="combineEventLogger" class="den.spring.core.logger.impl.CombinedEventLogger">
         <constructor-arg>
             <list>
                 <ref bean="consoleEventLogger"/>
@@ -14,17 +14,17 @@
         </constructor-arg>
     </bean>
 
-    <bean id="fileEventLogger" class="den.xmlconfiguration.logger.impl.FileEventLogger" init-method="init">
+    <bean id="fileEventLogger" class="den.spring.core.logger.impl.FileEventLogger" init-method="init">
         <constructor-arg value="${logFileName}"/>
     </bean>
 
-    <bean id="cacheFileEventLogger" class="den.xmlconfiguration.logger.impl.CacheFileEventLogger"
+    <bean id="cacheFileEventLogger" class="den.spring.core.logger.impl.CacheFileEventLogger"
           parent="fileEventLogger" destroy-method="destroy">
         <!--uses second constructor parameter from parent bean-->
         <constructor-arg value="2"/>
     </bean>
 
-    <bean id="event" class="den.xmlconfiguration.logger.Event" scope="prototype">
+    <bean id="event" class="den.spring.core.logger.Event" scope="prototype">
         <constructor-arg>
             <bean class="java.util.Date"/>
         </constructor-arg>

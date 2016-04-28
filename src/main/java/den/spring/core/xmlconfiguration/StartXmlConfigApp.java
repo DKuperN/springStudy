@@ -1,8 +1,8 @@
-package den.xmlconfiguration;
+package den.spring.core.xmlconfiguration;
 
-import den.xmlconfiguration.logger.Event;
-import den.xmlconfiguration.logger.EventLogger;
-import den.xmlconfiguration.logger.EventType;
+import den.spring.core.logger.Event;
+import den.spring.core.logger.EventLogger;
+import den.spring.core.logger.EventType;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * Created by Dzianis_Kupryianchyk on 14-Mar-16.
  */
-public class StartApp {
+public class StartXmlConfigApp {
     private EventLogger defaultLogger;
     private Event event;
     private EventType et;
@@ -19,7 +19,7 @@ public class StartApp {
     private String[] logMessage = {"ERROR message user 1", "SIMPLE message user 1", "INFO message user 1", "TEST message user 1"};
     private Map<EventType, EventLogger> loggers;
 
-    public StartApp(EventLogger eventLogger, Client client, Map<EventType, EventLogger> loggers) {
+    public StartXmlConfigApp(EventLogger eventLogger, Client client, Map<EventType, EventLogger> loggers) {
         this.defaultLogger = eventLogger;
         this.client = client;
         this.loggers = loggers;
@@ -27,7 +27,7 @@ public class StartApp {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
-        StartApp app = (StartApp) context.getBean("mainApplication");
+        StartXmlConfigApp app = (StartXmlConfigApp) context.getBean("mainApplication");
         app.event = (Event) context.getBean("event");
 
         for (String aLogMessage : app.logMessage) {

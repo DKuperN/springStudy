@@ -1,12 +1,12 @@
-package den.annotationconfiguration;
+package den.spring.core.annotationconfiguration;
 
-import den.xmlconfiguration.Client;
-import den.xmlconfiguration.logger.Event;
-import den.xmlconfiguration.logger.EventLogger;
-import den.xmlconfiguration.logger.EventType;
-import den.xmlconfiguration.logger.impl.CombinedEventLogger;
-import den.xmlconfiguration.logger.impl.ConsoleEventLogger;
-import den.xmlconfiguration.logger.impl.FileEventLogger;
+import den.spring.core.xmlconfiguration.Client;
+import den.spring.core.logger.Event;
+import den.spring.core.logger.EventLogger;
+import den.spring.core.logger.EventType;
+import den.spring.core.logger.impl.CombinedEventLogger;
+import den.spring.core.logger.impl.ConsoleEventLogger;
+import den.spring.core.logger.impl.FileEventLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -57,11 +57,11 @@ class AppConfig {
     }
 
     @Bean
-    public AnnotationApp annotationApp(){
+    public StartAnnotationConfigApp annotationApp(){
         Map<EventType, EventLogger> loggerMap = new HashMap<EventType, EventLogger>();
         loggerMap.put(EventType.INFO, consoleEventLogger());
         loggerMap.put(EventType.ERROR, combinedEventLogger());
-        return new AnnotationApp(eventLogger, client(), loggerMap);
+        return new StartAnnotationConfigApp(eventLogger, client(), loggerMap);
     }
 
     @Bean

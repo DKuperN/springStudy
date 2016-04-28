@@ -1,7 +1,7 @@
-package den.xmlconfiguration.logger.impl;
+package den.spring.core.logger.impl;
 
-import den.xmlconfiguration.logger.Event;
-import den.xmlconfiguration.logger.EventLogger;
+import den.spring.core.logger.Event;
+import den.spring.core.logger.EventLogger;
 
 import java.util.Collection;
 

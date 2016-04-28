@@ -1,9 +1,9 @@
-package den.annotationconfiguration;
+package den.spring.core.annotationconfiguration;
 
-import den.xmlconfiguration.Client;
-import den.xmlconfiguration.logger.Event;
-import den.xmlconfiguration.logger.EventLogger;
-import den.xmlconfiguration.logger.EventType;
+import den.spring.core.xmlconfiguration.Client;
+import den.spring.core.logger.Event;
+import den.spring.core.logger.EventLogger;
+import den.spring.core.logger.EventType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * Created by Dzianis_Kupryianchyk on 21-Mar-16.
  */
-public class AnnotationApp {
+public class StartAnnotationConfigApp {
 
     private Map<EventType, EventLogger> loggers;
     @Autowired
@@ -28,7 +28,7 @@ public class AnnotationApp {
     private EventLogger defaultLogger;
 
     @Autowired
-    public AnnotationApp(EventLogger eventLogger, Client client, Map<EventType, EventLogger> loggers) {
+    public StartAnnotationConfigApp(EventLogger eventLogger, Client client, Map<EventType, EventLogger> loggers) {
         this.defaultLogger = eventLogger;
         this.client = client;
         this.loggers = loggers;
@@ -36,7 +36,7 @@ public class AnnotationApp {
 
     public static void main(String[] args) {
         ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-        AnnotationApp app = (AnnotationApp) ctx.getBean("annotationApp");
+        StartAnnotationConfigApp app = (StartAnnotationConfigApp) ctx.getBean("annotationApp");
         for (String aLogMessage : app.logMessage) {
             if (aLogMessage.contains(EventType.ERROR.toString())) {
                 app.eventType = EventType.ERROR;

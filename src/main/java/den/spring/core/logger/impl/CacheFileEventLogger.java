@@ -1,6 +1,6 @@
-package den.xmlconfiguration.logger.impl;
+package den.spring.core.logger.impl;
 
-import den.xmlconfiguration.logger.Event;
+import den.spring.core.logger.Event;
 
 import javax.annotation.PreDestroy;
 import java.util.ArrayList;

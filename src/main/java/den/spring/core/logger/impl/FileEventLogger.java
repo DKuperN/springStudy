@@ -1,7 +1,7 @@
-package den.xmlconfiguration.logger.impl;
+package den.spring.core.logger.impl;
 
-import den.xmlconfiguration.logger.Event;
-import den.xmlconfiguration.logger.EventLogger;
+import den.spring.core.logger.Event;
+import den.spring.core.logger.EventLogger;
 import org.apache.commons.io.FileUtils;
 
 import javax.annotation.PostConstruct;
@@ -12,11 +12,9 @@ import java.io.IOException;
  * Created by Dzianis_Kupryianchyk on 14-Mar-16.
  */
 public class FileEventLogger implements EventLogger {
-    private String fileName;
     private File file;
 
     public FileEventLogger(String fileName) {
-        this.fileName = fileName;
         this.file = new File(fileName);
     }
 
