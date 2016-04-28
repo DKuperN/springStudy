@@ -1,5 +1,6 @@
 package den.spring.core.xmlconfiguration;
 
+import den.spring.core.logger.Client;
 import den.spring.core.logger.Event;
 import den.spring.core.logger.EventLogger;
 import den.spring.core.logger.EventType;

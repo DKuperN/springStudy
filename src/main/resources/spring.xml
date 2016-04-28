@@ -13,7 +13,7 @@
     <import resource="logger-beans.xml"/>
     <import resource="property-loader.xml"/>
 
-    <bean id="client" class="den.spring.core.xmlconfiguration.Client"
+    <bean id="client" class="den.spring.core.logger.Client"
           p:greeting="${greeting}"
           c:id="${id}"
           c:fullName="${app.userName}"/>
